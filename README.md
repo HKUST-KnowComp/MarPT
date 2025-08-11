@@ -1,5 +1,4 @@
-```markdown
-# Experiment Implementation Guide
+## Experiment Implementation Guide
 
 This repository implements the 3-stage experiment described in the paper.
 
