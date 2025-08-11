@@ -1,0 +1,85 @@
+===Model: meta-llama_Llama-3.1-8B-Instruct.json===
+Marker: almost certain      	Switching: 87.92%    	Sample Number: 256       
+Marker: highly likely       	Switching: 56.04%    	Sample Number: 256       
+Marker: very likely         	Switching: 58.00%    	Sample Number: 256       
+Marker: likely              	Switching: 41.80%    	Sample Number: 256       
+Marker: probable            	Switching: 44.23%    	Sample Number: 256       
+Marker: somewhat likely     	Switching: 36.71%    	Sample Number: 256       
+Marker: somewhat unlikely   	Switching: 33.71%    	Sample Number: 256       
+Marker: uncertain           	Switching: 35.49%    	Sample Number: 256       
+Marker: possible            	Switching: 36.29%    	Sample Number: 256       
+Marker: unlikely            	Switching: 33.49%    	Sample Number: 256       
+Marker: not likely          	Switching: 36.91%    	Sample Number: 256       
+Marker: doubtful            	Switching: 33.65%    	Sample Number: 256       
+Marker: very unlikely       	Switching: 31.30%    	Sample Number: 256       
+Marker: highly unlikely     	Switching: 32.83%    	Sample Number: 256       
+
+
+===Model: mistralai_Mistral-7B-Instruct-v0.3.json===
+Marker: almost certain      	Switching: 96.80%    	Sample Number: 256       
+Marker: highly likely       	Switching: 67.89%    	Sample Number: 256       
+Marker: very likely         	Switching: 63.10%    	Sample Number: 256       
+Marker: likely              	Switching: 57.50%    	Sample Number: 256       
+Marker: probable            	Switching: 87.22%    	Sample Number: 256       
+Marker: somewhat likely     	Switching: 48.98%    	Sample Number: 256       
+Marker: somewhat unlikely   	Switching: 40.15%    	Sample Number: 256       
+Marker: uncertain           	Switching: 48.08%    	Sample Number: 256       
+Marker: possible            	Switching: 52.16%    	Sample Number: 256       
+Marker: unlikely            	Switching: 38.27%    	Sample Number: 256       
+Marker: not likely          	Switching: 30.93%    	Sample Number: 256       
+Marker: doubtful            	Switching: 34.03%    	Sample Number: 256       
+Marker: very unlikely       	Switching: 29.47%    	Sample Number: 256       
+Marker: highly unlikely     	Switching: 27.88%    	Sample Number: 256       
+
+
+===Model: Qwen_Qwen2.5-7B-Instruct.json===
+Marker: almost certain      	Switching: 82.71%    	Sample Number: 256       
+Marker: highly likely       	Switching: 67.00%    	Sample Number: 256       
+Marker: very likely         	Switching: 67.06%    	Sample Number: 256       
+Marker: likely              	Switching: 4.78%     	Sample Number: 256       
+Marker: probable            	Switching: 3.44%     	Sample Number: 256       
+Marker: somewhat likely     	Switching: 8.93%     	Sample Number: 256       
+Marker: somewhat unlikely   	Switching: 27.24%    	Sample Number: 256       
+Marker: uncertain           	Switching: 35.58%    	Sample Number: 256       
+Marker: possible            	Switching: 4.51%     	Sample Number: 256       
+Marker: unlikely            	Switching: 19.90%    	Sample Number: 256       
+Marker: not likely          	Switching: 27.70%    	Sample Number: 256       
+Marker: doubtful            	Switching: 25.69%    	Sample Number: 256       
+Marker: very unlikely       	Switching: 18.37%    	Sample Number: 256       
+Marker: highly unlikely     	Switching: 19.32%    	Sample Number: 256       
+
+
+===Model: Qwen_Qwen2.5-14B-Instruct.json===
+Marker: almost certain      	Switching: 91.56%    	Sample Number: 256       
+Marker: highly likely       	Switching: 55.00%    	Sample Number: 256       
+Marker: very likely         	Switching: 54.10%    	Sample Number: 256       
+Marker: likely              	Switching: 42.38%    	Sample Number: 256       
+Marker: probable            	Switching: 26.51%    	Sample Number: 256       
+Marker: somewhat likely     	Switching: 32.47%    	Sample Number: 256       
+Marker: somewhat unlikely   	Switching: 26.45%    	Sample Number: 256       
+Marker: uncertain           	Switching: 29.03%    	Sample Number: 256       
+Marker: possible            	Switching: 38.38%    	Sample Number: 256       
+Marker: unlikely            	Switching: 19.10%    	Sample Number: 256       
+Marker: not likely          	Switching: 20.82%    	Sample Number: 256       
+Marker: doubtful            	Switching: 13.04%    	Sample Number: 256       
+Marker: very unlikely       	Switching: 10.94%    	Sample Number: 256       
+Marker: highly unlikely     	Switching: 10.52%    	Sample Number: 256       
+
+
+===Model: Qwen_Qwen2.5-32B-Instruct.json===
+Marker: almost certain      	Switching: 97.50%    	Sample Number: 256       
+Marker: highly likely       	Switching: 95.08%    	Sample Number: 256       
+Marker: very likely         	Switching: 82.82%    	Sample Number: 256       
+Marker: likely              	Switching: 65.00%    	Sample Number: 256       
+Marker: probable            	Switching: 54.74%    	Sample Number: 256       
+Marker: somewhat likely     	Switching: 46.08%    	Sample Number: 256       
+Marker: somewhat unlikely   	Switching: 21.89%    	Sample Number: 256       
+Marker: uncertain           	Switching: 2.98%     	Sample Number: 256       
+Marker: possible            	Switching: 55.00%    	Sample Number: 256       
+Marker: unlikely            	Switching: 3.33%     	Sample Number: 256       
+Marker: not likely          	Switching: 3.08%     	Sample Number: 256       
+Marker: doubtful            	Switching: 3.42%     	Sample Number: 256       
+Marker: very unlikely       	Switching: 2.77%     	Sample Number: 256       
+Marker: highly unlikely     	Switching: 2.51%     	Sample Number: 256       
+
+
