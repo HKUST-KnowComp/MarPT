@@ -23,10 +23,9 @@ For option K:
 - {k_prob_more}% probability to win ${k_more}.
 - {k_prob_less}% probability to win ${k_less}.
 
-Please DO NOT REASON and DIRECTLY output your choice, by ONLY returning one of the following two labels:
+Please think through your decision step by step, then provide your final answer as one of the following two labels:
 "[U]","[K]"
-
-The answer is: """
+"""
 
 lot_temp_mix = """
 For option U:  
@@ -37,10 +36,9 @@ For option K:
 - 50% probability to win ${k_win}.
 - 50% probability to lose ${k_lose}.
 
-Please DO NOT REASON and DIRECTLY output your choice, by ONLY returning one of the following two labels:
+Please think through your decision step by step, then provide your final answer as one of the following two labels:
 "[U]","[K]"
-
-The answer is: """
+"""
 
 def substitute(text, probs, expressions, option=None, only_one=False):
     if option is None:

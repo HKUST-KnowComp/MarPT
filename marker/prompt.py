@@ -21,10 +21,9 @@ For option K:
 For option U:
 - It's {marker} to win $100.
 
-Please DO NOT REASON and DIRECTLY output your choice, by ONLY returning one of the following two labels:
+Please think through your decision step by step, then provide your final answer as one of the following two labels:
 "[U]","[K]"
-
-The answer is:"""
+"""
 
 def format_lottery(x, marker, index):
     result = ""
