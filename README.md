@@ -17,7 +17,9 @@ Grounded in a classic behavioral economics experimental paradigm, the repository
 
 Our findings suggest that PT does **not** consistently provide a reliable account of LLM decision-making across models, and that its application to LLMs is likely **not robust** to epistemic uncertainty — cautioning against the deployment of PT-based frameworks in real-world applications where epistemic ambiguity is prevalent.
 
-![Main Figure](figures/main_figure.png)
+<p align="center">
+  <img src="figures/main_figure.png" alt="Main Figure" width="420"/>
+</p>
 
 *Figure 1: Overview of the three-stage workflow. (1) Decision-Making Behavior Evaluation: the model answers a series of binary-choice economics questions to estimate baseline PT parameters. (2) Markers Mapping: probability mappings for epistemic markers are derived from switching points between options with numerical and linguistic probabilities. (3) Add with Uncertainty: numerical probabilities are substituted with epistemic markers and PT parameters are re-measured to test stability.*
 
