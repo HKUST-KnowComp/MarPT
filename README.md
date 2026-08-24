@@ -1,4 +1,4 @@
-# MarPT
+# \[EMNLP 2026 Main\] MarPT
 
 📄 [arXiv](https://arxiv.org/abs/2508.08992) | [X Post](https://x.com/RuiWangRory/status/2090802609502433521?s=20)
 
