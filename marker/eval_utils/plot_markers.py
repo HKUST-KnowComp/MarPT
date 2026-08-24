@@ -1,8 +1,10 @@
 import json
+from pathlib import Path
 import matplotlib.pyplot as plt
 import numpy as np
 
 def load_data(input_path):
+    input_path = str(input_path)
     with open(input_path, 'r') as f:
         result = json.load(f)
         if "Qwen" in input_path and "7B" in input_path:
@@ -125,13 +127,14 @@ def plot_epistemic_markers(data, output_path):
     
 
 if __name__ == "__main__":
+    marker_dir = Path(__file__).resolve().parents[1]
     input_paths = [
-        "/project/rwangcn/MUvBE/marker/processed/meta-llama_Llama-3.1-8B-Instruct.json",
-        "/project/rwangcn/MUvBE/marker/processed/mistralai_Mistral-7B-Instruct-v0.3.json",
-        "/project/rwangcn/MUvBE/marker/processed/Qwen_Qwen2.5-7B-Instruct.json",
-        "/project/rwangcn/MUvBE/marker/processed/Qwen_Qwen2.5-14B-Instruct.json",
-        "/project/rwangcn/MUvBE/marker/processed/Qwen_Qwen2.5-32B-Instruct.json"
+        marker_dir / "processed/meta-llama_Llama-3.1-8B-Instruct.json",
+        marker_dir / "processed/mistralai_Mistral-7B-Instruct-v0.3.json",
+        marker_dir / "processed/Qwen_Qwen2.5-7B-Instruct.json",
+        marker_dir / "processed/Qwen_Qwen2.5-14B-Instruct.json",
+        marker_dir / "processed/Qwen_Qwen2.5-32B-Instruct.json"
     ]
 
     data = load_all(input_paths)
-    plot_epistemic_markers(data, "epistemic_markers_plot.png")
+    plot_epistemic_markers(data, Path(__file__).with_name("epistemic_markers_plot.png"))

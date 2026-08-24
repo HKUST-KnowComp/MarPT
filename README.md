@@ -1,6 +1,6 @@
 # MarPT
 
-📄 [arXiv](https://arxiv.org/abs/2508.08992)
+📄 [arXiv](https://arxiv.org/abs/2508.08992) | [X Post](https://x.com/RuiWangRory/status/2090802609502433521?s=20)
 
 This is the official repository for the paper "**Rethinking Prospect Theory for LLMs: Revealing the Instability of Decision-Making under Epistemic Uncertainty**".
 
@@ -76,67 +76,114 @@ risk/ (and marker/, risk_marker/)
    └── Re-estimated PT parameters → stability comparison against baseline
 ```
 
-## 📊 Key Results
-
-![Marker Mapping](figures/mapping.png)
-
-*Figure 2: Derived probability mappings (switching probability) for 14 epistemic markers across five instruction-tuned LLMs. The mappings vary substantially across models and do not follow a consistent ordering.*
-
-![PT Parameters](figures/model_parameters.png)
-
-*Figure 3: Estimated PT parameters (σ, λ, γ) at baseline and across four re-measurement rounds with epistemic markers. Parameter estimates drift considerably once linguistic uncertainty is introduced.*
-
-![Model Performance](figures/model_performance.png)
-
-*Figure 4: PT fitness measured by MAE (lower is better) and McFadden R² (higher is better). The fitted PT model captures LLM decision-making inconsistently across models and rounds.*
-
 ## 🚀 Quick Start
 
 ### Installation
 
+Python 3.9 or later is recommended. Install the experiment and analysis dependencies:
+
 ```bash
 git clone https://github.com/HKUST-KnowComp/MarPT.git
 cd MarPT
+python -m venv .venv
+source .venv/bin/activate
 pip install -r requirements.txt
+```
+
+The vLLM server can run in the same environment or on a separate Linux GPU machine. Install vLLM in the server environment according to its CUDA/PyTorch setup:
+
+```bash
+pip install vllm
 ```
 
 ### Model Deployment
 
-Start a vLLM server with your target model:
+Start one model with vLLM. Use the exact same model identifier in the server command and in the stage's `models_to_test` list:
 
 ```bash
-vllm serve Qwen/Qwen3-32B --port 8000
+vllm serve Qwen/Qwen2.5-7B-Instruct --port 8000
 ```
 
-The experiments expect an OpenAI-compatible API at `http://localhost:8000/v1` by default. You can override this with the `VLLM_BASE_URL` environment variable:
+Wait for model loading to finish, then verify the OpenAI-compatible endpoint:
+
+```bash
+curl http://localhost:8000/v1/models
+```
+
+The experiments use `http://localhost:8000/v1` by default. If the server is on another host or port, set:
 
 ```bash
 export VLLM_BASE_URL=http://your-server:8000/v1
 ```
 
-### Running an Experiment
+`generator/.sh/vllm_serve.sh` is an optional example for launching four models on GPUs 0-3 and ports 40001-40004. It creates `generator/vllm_logs/` automatically. Run one experiment against one of those ports at a time by setting `VLLM_BASE_URL`, for example:
 
-Navigate to the directory of the stage you want to run (e.g., Stage 1 baseline):
+```bash
+bash generator/.sh/vllm_serve.sh
+export VLLM_BASE_URL=http://localhost:40002/v1
+```
+
+The batch script requires four visible GPUs and enough memory for all four models. For a single-GPU setup, use the single `vllm serve` command above.
+
+### Experiment Configuration
+
+Before running a stage, open its `elicitation.py` and configure:
+
+* `models_to_test`: model identifiers served by the selected vLLM endpoint
+* `sample_num`: number of elicitation runs
+* `batchsize`: samples generated together in each run
+* `history`: conversation history retained by Stage 1 and Stage 3
+
+For a connectivity smoke test, use `sample_num = 1` and `batchsize = 1`. A single Stage 1 or Stage 3 run makes 35 rounds of requests. A complete Stage 2 run covers 14 markers with 10 lotteries each, so even its smoke test is substantially longer. The scripts append valid responses to an existing model result file; choose the output/model name carefully when repeating experiments.
+
+### Stage 1: Baseline PT Estimation
+
+Run commands from the stage directory so local imports and output paths resolve consistently:
 
 ```bash
 cd risk
+python elicitation.py
+python process.py > process.log
+cd ..
 ```
 
-Configure the target model(s):
+Raw model responses are appended to `risk/result/<model>.json`. MLE parameters, bootstrap confidence intervals, MAE, and McFadden R² are written to `risk/processed/<model>.json`.
 
-1. Open `elicitation.py`
-2. Edit `models_to_test` to select your target model(s)
-3. Optionally adjust `base_url`, `sample_num`, and `batchsize`
-
-Run elicitation and process the results:
+### Stage 2: Epistemic Marker Mapping
 
 ```bash
-# Elicitation — raw outputs are saved under result/
+cd marker
 python elicitation.py
-
-# Processing — measured parameters are saved in processed/
 python process.py > result.txt
+cd ..
 ```
+
+Raw responses are stored in `marker/result/`; the 14 marker switching probabilities are written to `marker/processed/`.
+
+### Stage 3: Re-measurement with Markers
+
+Stage 3 must use a model supported by `risk_marker/prompt.py:safe_sub`. The repository currently provides mappings for Llama-3.1-8B-Instruct, Mistral-7B-Instruct-v0.3, and Qwen2.5-7B/14B/32B-Instruct.
+
+```bash
+cd risk_marker
+python elicitation.py
+python process.py > process.log
+cd ..
+```
+
+Raw responses are stored in `risk_marker/result/`; re-estimated PT parameters and fit metrics are written to `risk_marker/processed/`.
+
+### Reprocessing Included Results
+
+The repository already includes raw result JSON files. You can reproduce the processed outputs without a GPU or vLLM server:
+
+```bash
+(cd risk && python process.py > process.log)
+(cd marker && python process.py > process.log)
+(cd risk_marker && python process.py > process.log)
+```
+
+The MLE scripts use bootstrap sampling without a fixed random seed. Parameter point estimates and fit metrics are reproducible, while confidence interval endpoints may vary slightly between runs.
 
 ### Customizing Marker Substitution (Stage 3 only)
 
@@ -150,9 +197,9 @@ To customize how epistemic markers replace numerical probabilities:
 * The `generator/` module provides a unified `VLLMGenerator` class used by all three stages.
   * `risk/` and `risk_marker/` use **chat completion** (`/v1/chat/completions`) with multi-turn conversations.
   * `marker/` uses **text completion** (`/v1/completions`) with raw prompts.
-* For **Qwen3** models, thinking mode is automatically disabled via `chat_template_kwargs`.
-* For **QwQ** models, a system message suppressing reasoning is automatically prepended.
-* Ensure the vLLM model server is running before starting any elicitation.
+* The model identifier in `models_to_test` must match a model returned by `/v1/models`.
+* Processing and analysis do not require vLLM; only elicitation sends model requests.
+* Qwen3 currently has complete Stage 1 data but only partial Stage 2 data in this repository, and it is not configured for Stage 3 marker substitution.
 
 ## 📚 Citing this work
 

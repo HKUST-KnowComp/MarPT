@@ -67,13 +67,13 @@ def plot(filename, save_path):
 
 if __name__ == "__main__":
     for input_path in [
-        "/project/rwangcn/MUvBE/marker/processed/meta-llama_Llama-3.1-8B-Instruct.json",
-        "/project/rwangcn/MUvBE/marker/processed/mistralai_Mistral-7B-Instruct-v0.3.json",
-        "/project/rwangcn/MUvBE/marker/processed/Qwen_Qwen2.5-7B-Instruct.json",
-        "/project/rwangcn/MUvBE/marker/processed/Qwen_Qwen2.5-14B-Instruct.json",
-        "/project/rwangcn/MUvBE/marker/processed/Qwen_Qwen2.5-32B-Instruct.json"
+        "processed/meta-llama_Llama-3.1-8B-Instruct.json",
+        "processed/mistralai_Mistral-7B-Instruct-v0.3.json",
+        "processed/Qwen_Qwen2.5-7B-Instruct.json",
+        "processed/Qwen_Qwen2.5-14B-Instruct.json",
+        "processed/Qwen_Qwen2.5-32B-Instruct.json"
     ]:
-        output_path = "/project/rwangcn/MUvBE/marker/plot/"
+        output_path = "plot/"
         if "Qwen" in input_path and "7B" in input_path:
             output_path += "Qwen7B"
         elif "Qwen" in input_path and "14B" in input_path:
@@ -86,5 +86,4 @@ if __name__ == "__main__":
             output_path += "Mistral7B"
 
         plot(input_path, output_path)
-    
     

@@ -42,11 +42,11 @@ def process(filename, output_path, model_name):
 
 if __name__ == "__main__":
     for input_path in [
-        "/project/rwangcn/MUvBE/marker_risk/result/meta-llama_Llama-3.1-8B-Instruct.json",
-        "/project/rwangcn/MUvBE/marker_risk/result/mistralai_Mistral-7B-Instruct-v0.3.json",
-        "/project/rwangcn/MUvBE/marker_risk/result/Qwen_Qwen2.5-7B-Instruct.json",
-        "/project/rwangcn/MUvBE/marker_risk/result/Qwen_Qwen2.5-14B-Instruct.json",
-        "/project/rwangcn/MUvBE/marker_risk/result/Qwen_Qwen2.5-32B-Instruct.json"
+        "result/meta-llama_Llama-3.1-8B-Instruct.json",
+        "result/mistralai_Mistral-7B-Instruct-v0.3.json",
+        "result/Qwen_Qwen2.5-7B-Instruct.json",
+        "result/Qwen_Qwen2.5-14B-Instruct.json",
+        "result/Qwen_Qwen2.5-32B-Instruct.json"
     ]:
         if "Qwen" in input_path and "7B" in input_path:
             model_name = "Qwen7B"
